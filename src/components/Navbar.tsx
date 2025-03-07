@@ -1,7 +1,34 @@
+import { useState } from "react";
 import Logo from "../assets/logo.png";
 import Timer from "./Timer";
+import Modal from "./Modal";
 
 const Navbar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [timerRunning, setTimerRunning] = useState(true);
+  const [resetTimer, setResetTimer] = useState(false);
+  const [classRunning, setClassRunning] = useState(true);
+
+  const handleEndClass = () => {
+    setIsModalOpen(true);
+  };
+
+  const endClass = () => {
+    setIsModalOpen(false);
+    setTimerRunning(false);
+    setResetTimer((prev) => !prev);
+    setClassRunning(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const startClass = () => {
+    setTimerRunning(true);
+    setClassRunning(true);
+  };
+
   return (
     <nav>
       <div className=" flex flex-row justify-between">
@@ -14,12 +41,25 @@ const Navbar = () => {
         </div>
 
         <div className="flex flex-row space-x-5">
-          <Timer />
-          <button className="bg-[#f35742] my-3 px-5 rounded-md text-white font-bold mr-5">
-            End class
-          </button>
+          <Timer isRunning={timerRunning} reset={resetTimer} />
+          {classRunning ? (
+            <button
+              className="bg-[#f35742] hover:bg-[#c93824] my-3 px-5 rounded-md text-white font-bold mr-5 cursor-pointer"
+              onClick={handleEndClass}
+            >
+              End Class
+            </button>
+          ) : (
+            <button
+              className="bg-[#f35742] hover:bg-[#c93824] my-3 px-5 rounded-md text-white font-bold mr-5 cursor-pointer"
+              onClick={startClass}
+            >
+              Start Class
+            </button>
+          )}
         </div>
       </div>
+      {isModalOpen && <Modal onConfirm={endClass} onCancel={handleCancel} />}
     </nav>
   );
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import { IoChevronBack } from "react-icons/io5";
-import { Navigate, NavLink } from "react-router";
+import { NavLink } from "react-router";
 
 interface Post {
   id: number;

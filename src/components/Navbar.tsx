@@ -4,8 +4,7 @@ import Timer from "./Timer";
 import Modal from "./Modal";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
-import { NavLink, Route, Routes } from "react-router";
-import Posts from "./Posts";
+import { NavLink } from "react-router";
 import Button from "../shared/Button";
 
 const Navbar = () => {
@@ -117,6 +116,12 @@ const Navbar = () => {
               Start Class
             </button>
           )}
+
+          <div className="text-[#f35742] text-xl font-bold mr-5 cursor-pointers py-4 mx-5 md:hidden underline">
+            <NavLink to="/posts" end>
+              Posts
+            </NavLink>
+          </div>
         </div>
       </div>
       {isModalOpen && <Modal onConfirm={endClass} onCancel={handleCancel} />}

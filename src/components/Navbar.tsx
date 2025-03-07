@@ -4,6 +4,9 @@ import Timer from "./Timer";
 import Modal from "./Modal";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
+import { NavLink, Route, Routes } from "react-router";
+import Posts from "./Posts";
+import Button from "../shared/Button";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,6 +49,12 @@ const Navbar = () => {
           <div className="hidden md:block my-7 text-gray-600 font-bold">
             Trial Lesson [Grade 1 - 3]
           </div>
+
+          <div className="bg-[#f35742] hover:bg-[#c93824] my-3 px-5 rounded-md text-white font-bold mr-5 cursor-pointers py-4 mx-5 hidden md:block">
+            <NavLink to="/posts" end>
+              Posts
+            </NavLink>
+          </div>
         </div>
 
         <div className="md:hidden">
@@ -58,19 +67,9 @@ const Navbar = () => {
         <div className="md:flex md:flex-row space-x-5 hidden ">
           <Timer isRunning={timerRunning} reset={resetTimer} />
           {classRunning ? (
-            <button
-              className="bg-[#f35742] hover:bg-[#c93824] my-3 px-5 rounded-md text-white font-bold mr-5 cursor-pointer"
-              onClick={handleEndClass}
-            >
-              End Class
-            </button>
+            <Button onClick={handleEndClass} text="End Class" />
           ) : (
-            <button
-              className="bg-[#f35742] hover:bg-[#c93824] my-3 px-5 rounded-md text-white font-bold mr-5 cursor-pointer"
-              onClick={startClass}
-            >
-              Start Class
-            </button>
+            <Button onClick={startClass} text="Start Class" />
           )}
         </div>
       </div>

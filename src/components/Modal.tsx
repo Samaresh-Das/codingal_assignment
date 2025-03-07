@@ -71,7 +71,6 @@ const Modal = ({ onConfirm, onCancel }: ModalProps) => {
           </label>
         </div>
 
-        {/* Sub-reasons for "Class interrupted" */}
         {selectedReason === "interrupted" && (
           <div
             className={`ml-4 mt-4 transition-all duration-300 ease-in-out space-y-2 `}
